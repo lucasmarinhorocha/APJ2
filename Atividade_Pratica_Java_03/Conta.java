@@ -1,52 +1,59 @@
 package Atividade_Pratica_Java_03;
-//package POO;
 
 public class Conta {
-    
-    private String nome_titular;
-    private Double saldo  ;
+
+    private String nomeTitular;
+    private double saldo;
     private int numero;
 
-    void depositar(double saldo){
-        this.saldo += saldo;
+    // Construtor 
+    public Conta(String nomeTitular, int numero, double saldoInicial) {
+        this.nomeTitular = nomeTitular;
+        this.numero = numero;
+        this.saldo = saldoInicial;
     }
 
-    void setNomeTitular(String nome){
-        this.nome_titular = nome;
+    // Métodos de acesso (getters e setters)
+    public String getNomeTitular() {
+        return nomeTitular;
     }
 
-    String getNomeTitular(){
-        return this.nome_titular;
+    public void setNomeTitular(String nomeTitular) {
+        this.nomeTitular = nomeTitular;
     }
 
-    void setSaldo(double saldo){
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
-    int getNumero(){
-        return this.numero;
+    public int getNumero() {
+        return numero;
     }
 
-    int getSaldo(){
-        return this.saldo.intValue();
-    }
-
-    void setNumero(int numero){
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
-    boolean sacar(double saque){
-
-
-        if(saque <= this.saldo){
-            this.saldo -= saque;
-            return true ;
-        } else {
-            return false;
+    // Métodos de operação
+    public void depositar(double valor) {
+        if (valor > 0) {
+            saldo += valor;
         }
-
     }
 
-
-
+    public boolean sacar(double valor) {
+        if (valor > 0 && valor <= saldo) {
+            saldo -= valor;
+            return true;
+        }
+        return false;
+    }
 }
+
+
+
+

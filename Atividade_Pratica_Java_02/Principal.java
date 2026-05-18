@@ -1,4 +1,4 @@
-package Ativida_Pratica_Java_02;
+package Atividade_Pratica_Java_02;
 import java.util.ArrayList;
 import java.util.Scanner;
 

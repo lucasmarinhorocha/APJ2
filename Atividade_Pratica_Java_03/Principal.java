@@ -34,14 +34,14 @@ public class Principal {
 
        while(execucao){
 
-            System.out.println("------SEJA BEM VINDO------");
+            System.out.println("\n------SEJA BEM VINDO------\n");
                 System.out.println("DIGITE 1 PARA CRIAR CONTA\nDIGITE 2 PARA VER SALDO\nDIGITE 3 PARA SACAR\nDIGITE 4 PARA DEPOSITAR\nDIGITE QUALQUER OUTRO VALOR PARA SAIR");        String escolha = sc.next();
 
             switch (escolha) {
 
                     case "1": 
 
-                Conta conta_usuario = new Conta();
+                Conta conta_usuario = new Conta(null, 0, 0);
                 System.out.println("informe o nome");
                 conta_usuario.setNomeTitular(sc.next()); 
                 
@@ -61,7 +61,7 @@ public class Principal {
                     break;
 
                     case "4":
-
+                    System.out.println("Informe qual conta você quer utilizar para depositar");
                     int conta_atualDEP = getConta(sc,contas);
                         System.out.println("informe quanto voce quer depositar\nseu saldo atual é:" + contas.get(conta_atualDEP).getSaldo());
                     double deposito = sc.nextDouble();

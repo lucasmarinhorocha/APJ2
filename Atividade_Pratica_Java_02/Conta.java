@@ -1,4 +1,4 @@
-package Ativida_Pratica_Java_02;
+package Atividade_Pratica_Java_02;
 
 public class Conta {
     
