@@ -1,4 +1,4 @@
-package Atividade_Pratica_Java_02;
+package Atividade_Pratica_Java_03;
 
 
 
@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 
-public class Princiapal {
+public class Principal {
     static    ArrayList<Conta> contas = new ArrayList<>();
 
    static int getConta(Scanner sc,ArrayList<Conta> conta) {
