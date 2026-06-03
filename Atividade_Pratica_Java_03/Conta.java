@@ -1,4 +1,4 @@
-package Atividade_Pratica_Java_03;
+//package Atividade_Pratica_Java_03;
 
 public class Conta {
 
@@ -14,6 +14,14 @@ public class Conta {
     }
 
     // Métodos de acesso (getters e setters)
+
+    public void imprimirTipoconts(){
+        System.out.println("Conta comum");
+    }
+     public void imprimirTipoconts(char tipo){
+        System.out.println("Conta comum"+tipo);
+    }
+
     public String getNomeTitular() {
         return nomeTitular;
     }

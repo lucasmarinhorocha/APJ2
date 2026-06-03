@@ -1,4 +1,4 @@
-package Atividade_Pratica_Java_03;
+//package Atividade_Pratica_Java_03;
 
 
 
@@ -8,7 +8,54 @@ import java.util.Scanner;
 
 
 public class Principal {
-    static    ArrayList<Conta> contas = new ArrayList<>();
+
+public static void main(String[] args) {
+
+ Conta c = null ;
+
+Scanner scan = new Scanner(System.in);
+
+int opcao ;
+System.out.println("Informe o tipo de conta que deseja criar\n1 - Conta comum\n2 - Conta poupança\n3 - Conta especial");
+
+opcao = scan.nextInt();
+
+switch (opcao) {
+    case 1:
+        c = new Conta("Jorge", 123, 1000);
+       
+        break;
+    case 2:
+        c = new Conta_popanca("Maria", 456, 2000);
+       
+        break;
+    case 3:
+        c = new Conta_especial("João", 789, 3000, 500);
+       
+        break;
+    default:
+        System.out.println("Opção inválida");
+        break;
+
+}
+c.imprimirTipoconts();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*static    ArrayList<Conta> contas = new ArrayList<>();
 
    static int getConta(Scanner sc,ArrayList<Conta> conta) {
     System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
@@ -34,7 +81,7 @@ public class Principal {
 
        while(execucao){
 
-            System.out.println("\n------SEJA BEM VINDO------\n");
+            System.out.println("\n------SEJA BEM VINDO------\n ");
                 System.out.println("DIGITE 1 PARA CRIAR CONTA\nDIGITE 2 PARA VER SALDO\nDIGITE 3 PARA SACAR\nDIGITE 4 PARA DEPOSITAR\nDIGITE QUALQUER OUTRO VALOR PARA SAIR");        String escolha = sc.next();
 
             switch (escolha) {
@@ -46,7 +93,7 @@ public class Principal {
                 conta_usuario.setNomeTitular(sc.next()); 
                 
                 conta_usuario.setNumero(++numeroConta);
-                contas.add(conta_usuario); // <-- adiciona na lista
+                contas.add(conta_usuario); // <-- adiciona na listacfxd
                 System.out.println("numero da conta: " + conta_usuario.getNumero());
                 
                 System.out.println("Conta criada com sucesso");
@@ -123,7 +170,21 @@ public class Principal {
 
                 System.out.println(conta2.nome);
                 System.out.println(conta2.saldo);
+}
                 */
+
+
+
+
+
+
+
+
+
+
+
+
             }
             
-        }
+        
+        
