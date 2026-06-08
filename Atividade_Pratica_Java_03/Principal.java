@@ -8,29 +8,49 @@ import java.util.Scanner;
 
 
 public class Principal {
+static    ArrayList<Conta> contas = new ArrayList<>();
+
+   static int getConta(Scanner sc,ArrayList<Conta> conta) {
+    System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
+    mostrarContas(conta);
+    int valor = sc.nextInt();
+    return valor - 1;
+}
+
+   static void mostrarContas(ArrayList<Conta> conta) {
+    System.out.println("Contas disponíveis:");
+    for (int i = 0; i < conta.size(); i++) {
+        System.out.println((i + 1) + ". " + conta.get(i).getNumero() + " - " + conta.get(i).getNomeTitular()+" - " );
+        conta.get(i).imprimirTipoconts();
+    }
+}
 
 public static void main(String[] args) {
 
  Conta c = null ;
 
 Scanner scan = new Scanner(System.in);
-
+boolean condition = true ;
 int opcao ;
+int numeroConta = 0;
+while (condition) {
+    
+
 System.out.println("Informe o tipo de conta que deseja criar\n1 - Conta comum\n2 - Conta poupança\n3 - Conta especial");
 
 opcao = scan.nextInt();
 
 switch (opcao) {
     case 1:
-        c = new Conta("Jorge", 123, 1000);
+        c = new Conta(null, 0, 0);
        
         break;
     case 2:
-        c = new Conta_popanca("Maria", 456, 2000);
+        c = new Conta_popanca(null, 0, 0);
        
         break;
     case 3:
-        c = new Conta_especial("João", 789, 3000, 500);
+        c = new Conta_especial(null, 0, 0, 500);
        
         break;
     default:
@@ -39,6 +59,28 @@ switch (opcao) {
 
 }
 c.imprimirTipoconts();
+   
+
+
+                System.out.println("informe o nome");
+              
+                c.setNomeTitular(scan.next()); 
+                
+                c.setNumero(++numeroConta);
+                contas.add(c); // <-- adiciona na listacfxd
+                System.out.println("numero da conta: " + c.getNumero());
+                
+                System.out.println("Conta criada com sucesso");
+
+                System.out.println("Deseja criar outra conta? (s/n)");
+                String resposta = scan.next();
+                if (!resposta.equalsIgnoreCase("s")) {
+                    condition = false;
+                }
+            }
+
+
+            mostrarContas(contas);
 }
 
 

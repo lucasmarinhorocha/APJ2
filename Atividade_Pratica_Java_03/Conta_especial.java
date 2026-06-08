@@ -27,4 +27,9 @@ public boolean sacar(double valor) {
     }
     return false;
 }
+
+@Override
+public void imprimirTipoconts(){
+        System.out.println("Conta especial");
+    }
 }
