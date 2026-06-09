@@ -1,232 +1,111 @@
-//package Atividade_Pratica_Java_03;
-
-
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
 public class Principal {
-static    ArrayList<Conta> contas = new ArrayList<>();
+    static ArrayList<Conta> contas = new ArrayList<>();
 
-   static int getConta(Scanner sc,ArrayList<Conta> conta) {
-    System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
-    mostrarContas(conta);
-    int valor = sc.nextInt();
-    return valor - 1;
-}
-
-   static void mostrarContas(ArrayList<Conta> conta) {
-    System.out.println("Contas disponíveis:");
-    for (int i = 0; i < conta.size(); i++) {
-        System.out.println((i + 1) + ". " + conta.get(i).getNumero() + " - " + conta.get(i).getNomeTitular()+" - " );
-        conta.get(i).imprimirTipoconts();
+    static int getConta(Scanner sc, ArrayList<Conta> conta) {
+        System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
+        mostrarContas(conta);
+        int valor = sc.nextInt();
+        return valor - 1;
     }
-}
 
-public static void main(String[] args) {
-
- Conta c = null ;
-
-Scanner scan = new Scanner(System.in);
-boolean condition = true ;
-int opcao ;
-int numeroConta = 0;
-while (condition) {
-    
-
-System.out.println("Informe o tipo de conta que deseja criar\n1 - Conta comum\n2 - Conta poupança\n3 - Conta especial");
-
-opcao = scan.nextInt();
-
-switch (opcao) {
-    case 1:
-        c = new Conta(null, 0, 0);
-       
-        break;
-    case 2:
-        c = new Conta_popanca(null, 0, 0);
-       
-        break;
-    case 3:
-        c = new Conta_especial(null, 0, 0, 500);
-       
-        break;
-    default:
-        System.out.println("Opção inválida");
-        break;
-
-}
-c.imprimirTipoconts();
-   
-
-
-                System.out.println("informe o nome");
-              
-                c.setNomeTitular(scan.next()); 
-                
-                c.setNumero(++numeroConta);
-                contas.add(c); // <-- adiciona na listacfxd
-                System.out.println("numero da conta: " + c.getNumero());
-                
-                System.out.println("Conta criada com sucesso");
-
-                System.out.println("Deseja criar outra conta? (s/n)");
-                String resposta = scan.next();
-                if (!resposta.equalsIgnoreCase("s")) {
-                    condition = false;
-                }
-            }
-
-
-            mostrarContas(contas);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*static    ArrayList<Conta> contas = new ArrayList<>();
-
-   static int getConta(Scanner sc,ArrayList<Conta> conta) {
-    System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
-    mostrarContas(conta);
-    int valor = sc.nextInt();
-    return valor - 1;
-}
-
-   static void mostrarContas(ArrayList<Conta> conta) {
-    System.out.println("Contas disponíveis:");
-    for (int i = 0; i < conta.size(); i++) {
-        System.out.println((i + 1) + ". " + conta.get(i).getNumero() + " - " + conta.get(i).getNomeTitular());
+    static void mostrarContas(ArrayList<Conta> conta) {
+        System.out.println("Contas disponíveis:");
+        for (int i = 0; i < conta.size(); i++) {
+            System.out.print((i + 1) + ". " + conta.get(i).getNumero() + " - " + conta.get(i).getNomeTitular() + " - ");
+            conta.get(i).imprimirTipoconts();
+        }
     }
-}
 
     public static void main(String[] args) {
+        Conta c = null;
+        Scanner scan = new Scanner(System.in);
+        boolean condition = true;
+        int opcao;
+        int numeroConta = 0;
 
-        boolean execucao = true;
+        while (condition) {
+            System.out.println("\n------SEJA BEM VINDO------\n");
+            System.out.println("DIGITE 1 PARA CRIAR CONTA\nDIGITE 2 PARA VER SALDO\nDIGITE 3 PARA SACAR\nDIGITE 4 PARA DEPOSITAR\nDIGITE QUALQUER OUTRO VALOR PARA SAIR");
 
-        Scanner sc = new Scanner(System.in);
-        
-       int numeroConta = 0;
+            opcao = scan.nextInt();
+            
+            // Tratamento caso o usuário escolha operar uma conta sem antes criar uma
+            if ((opcao >= 2 && opcao <= 4) && contas.isEmpty()) {
+                System.out.println("Nenhuma conta cadastrada ainda. Crie uma conta primeiro!");
+                continue;
+            }
 
-       while(execucao){
-
-            System.out.println("\n------SEJA BEM VINDO------\n ");
-                System.out.println("DIGITE 1 PARA CRIAR CONTA\nDIGITE 2 PARA VER SALDO\nDIGITE 3 PARA SACAR\nDIGITE 4 PARA DEPOSITAR\nDIGITE QUALQUER OUTRO VALOR PARA SAIR");        String escolha = sc.next();
-
-            switch (escolha) {
-
-                    case "1": 
-
-                Conta conta_usuario = new Conta(null, 0, 0);
-                System.out.println("informe o nome");
-                conta_usuario.setNomeTitular(sc.next()); 
-                
-                conta_usuario.setNumero(++numeroConta);
-                contas.add(conta_usuario); // <-- adiciona na listacfxd
-                System.out.println("numero da conta: " + conta_usuario.getNumero());
-                
-                System.out.println("Conta criada com sucesso");
-
-                    break;
-
-                    case "2":
-
-                    int conta_atual = getConta(sc,contas);
-                    System.out.print("saldo da conta:\n" + contas.get(conta_atual).getSaldo());
+            switch (opcao) {
+                case 1:
+                    System.out.println("Informe o tipo de conta que deseja criar:\n1 - Conta Comum\n2 - Conta Poupança\n3 - Conta Especial");
+                    int tipoConta = scan.nextInt();
+                    switch (tipoConta) {
+                        case 1:
+                            c = new Conta(null, 0, 0);
+                            break;
+                        case 2:
+                            c = new Conta_popanca(null, 0, 0); // Ajuste conforme o nome exato da sua classe (ex: ContaPoupanca)
+                            break;
+                        case 3:
+                            c = new Conta_especial(null, 0, 0, 500); // Ajuste conforme o nome exato da sua classe
+                            break;
+                        default:
+                            System.out.println("Tipo inválido! Criando conta padrão comum.");
+                            c = new Conta(null, 0, 0);
+                            break;
+                    }
                     
+                    System.out.println("Informe o nome:");
+                    scan.nextLine(); // Limpa o buffer do teclado
+                    c.setNomeTitular(scan.nextLine());
+
+                    c.setNumero(++numeroConta);
+                    contas.add(c);
+                    System.out.println("Número da conta: " + c.getNumero());
+                    System.out.println("Conta criada com sucesso!");
                     break;
 
-                    case "4":
-                    System.out.println("Informe qual conta você quer utilizar para depositar");
-                    int conta_atualDEP = getConta(sc,contas);
-                        System.out.println("informe quanto voce quer depositar\nseu saldo atual é:" + contas.get(conta_atualDEP).getSaldo());
-                    double deposito = sc.nextDouble();
+                case 2:
+                    int conta_atual = getConta(scan, contas);
+                    System.out.println("Saldo da conta: " + contas.get(conta_atual).getSaldo());
+                    break;
+
+                case 4:
+                    System.out.println("Informe qual conta você quer utilizar para depositar:");
+                    int conta_atualDEP = getConta(scan, contas);
+                    System.out.println("Informe quanto você quer depositar. Seu saldo atual é: " + contas.get(conta_atualDEP).getSaldo());
+                    double deposito = scan.nextDouble();
 
                     contas.get(conta_atualDEP).depositar(deposito);
-                    
-                        System.out.println("deposito realizado\n seu saldo atual é: " + contas.get(conta_atualDEP).getSaldo());
-                        
-                        break;
-                    
-                    case "3": System.out.println("informe quanto voce quer sacar\n seu saldo atual é:" );
-                    int conta_atualSAC = getConta(sc,contas);
-                    System.out.println("informe quanto voce quer sacar\nseu saldo atual é:" + contas.get(conta_atualSAC).getSaldo());
-                    double saque = sc.nextDouble();
-                    
-                    if(contas.get(conta_atualSAC).sacar(saque)){
-                        System.out.println("Saque efetudo com sucesso\nseu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
-                    } else {
-                        System.out.println("Saque não efetuado\nseu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
-                    }   
+                    System.out.println("Depósito realizado! Seu saldo atual é: " + contas.get(conta_atualDEP).getSaldo());
                     break;
 
-                    default:
-                        System.out.println("Saindo...");
-                        execucao = false;
-                        sc.close();
-                        break;
+                case 3:
+                    System.out.println("Informe qual conta você quer utilizar para sacar:");
+                    int conta_atualSAC = getConta(scan, contas);
+                    System.out.println("Informe quanto você quer sacar. Seu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
+                    double saque = scan.nextDouble();
 
-                        
-                }
+                    if (contas.get(conta_atualSAC).sacar(saque)) {
+                        System.out.println("Saque efetuado com sucesso! Seu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
+                    } else {
+                        System.out.println("Saque não efetuado (Saldo/Limite insuficiente). Seu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
+                    }
+                    break;
 
+                default:
+                    System.out.println("Saindo...");
+                    condition = false;
+                    break;
             }
-
-
-
-
-
-
-            /* 
-            Conta conta = new Conta();
-            Conta conta2 = new Conta();
-
-            conta.depositar(500);
-            conta.nome = "jorge";
-            conta2.depositar(1000);
-            conta2.nome = "maria";
-
-                System.out.println(conta.nome);
-                System.out.println(conta.saldo);
-                boolean permicao = conta.sacar(450);
-
-                if(permicao){
-                    System.out.println("Permitido");
-                } else {
-                    System.out.println("Proibido");
-                }
-                System.out.println(conta.saldo);
-
-
-                System.out.println(conta2.nome);
-                System.out.println(conta2.saldo);
+        }
+        
+        scan.close();
+        System.out.println("\n--- Resumo de Contas ao Finalizar ---");
+        mostrarContas(contas);
+    }
 }
-                */
-
-
-
-
-
-
-
-
-
-
-
-
-            }
-            
-        
-        
