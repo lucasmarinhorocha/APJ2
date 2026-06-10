@@ -21,6 +21,7 @@ public class Principal {
     }
 
     public static void main(String[] args) {
+        double limiteEspecial ; // Limite para contas especiais
         Conta c = null;
         Scanner scan = new Scanner(System.in);
         boolean condition = true;
@@ -49,9 +50,13 @@ public class Principal {
                             break;
                         case 2:
                             c = new Conta_popanca(null, 0, 0); // Ajuste conforme o nome exato da sua classe (ex: ContaPoupanca)
+                           
                             break;
                         case 3:
-                            c = new Conta_especial(null, 0, 0, 500); // Ajuste conforme o nome exato da sua classe
+                             // Ajuste conforme o nome exato da sua classe
+                             System.out.println("informe o limite para a conta especial:");
+                            limiteEspecial = scan.nextDouble();
+                            c = new Conta_especial(null, 0, 0, limiteEspecial);
                             break;
                         default:
                             System.out.println("Tipo inválido! Criando conta padrão comum.");

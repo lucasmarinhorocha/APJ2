@@ -11,14 +11,6 @@ public class Conta_especial extends Conta{
 private double limite ;
 
 
-public double getLimit(){
-    return limite;
-}
-
-public void setLimit(double limite){
-    this.limite = limite;
-
-}
 
 public boolean sacar(double valor) {
     if (valor <=  this.limite + this.getSaldo()) {
