@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Principal {
     static ArrayList<Conta> contas = new ArrayList<>();
-
+/* 
     static int getConta(Scanner sc, ArrayList<Conta> conta) {
         System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
         mostrarContas(conta);
@@ -19,7 +19,7 @@ public class Principal {
             conta.get(i).imprimirTipoconts();
         }
     }
-
+*/
     public static void main(String[] args) {
         double limiteEspecial ; // Limite para contas especiais
         Conta c = null;
@@ -75,13 +75,13 @@ public class Principal {
                     break;
 
                 case 2:
-                    int conta_atual = getConta(scan, contas);
+                    int conta_atual = c.getConta(scan, contas);
                     System.out.println("Saldo da conta: " + contas.get(conta_atual).getSaldo());
                     break;
 
                 case 4:
                     System.out.println("Informe qual conta você quer utilizar para depositar:");
-                    int conta_atualDEP = getConta(scan, contas);
+                    int conta_atualDEP = c.getConta(scan, contas);
                     System.out.println("Informe quanto você quer depositar. Seu saldo atual é: " + contas.get(conta_atualDEP).getSaldo());
                     double deposito = scan.nextDouble();
 
@@ -91,7 +91,7 @@ public class Principal {
 
                 case 3:
                     System.out.println("Informe qual conta você quer utilizar para sacar:");
-                    int conta_atualSAC = getConta(scan, contas);
+                    int conta_atualSAC = c.getConta(scan, contas);
                     System.out.println("Informe quanto você quer sacar. Seu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
                     double saque = scan.nextDouble();
 
@@ -111,6 +111,6 @@ public class Principal {
         
         scan.close();
         System.out.println("\n--- Resumo de Contas ao Finalizar ---");
-        mostrarContas(contas);
+        c.mostrarContas(contas);
     }
 }
