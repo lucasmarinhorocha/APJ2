@@ -4,22 +4,7 @@ import java.util.Scanner;
 
 public class Principal {
     static ArrayList<Conta> contas = new ArrayList<>();
-/* 
-    static int getConta(Scanner sc, ArrayList<Conta> conta) {
-        System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
-        mostrarContas(conta);
-        int valor = sc.nextInt();
-        return valor - 1;
-    }
 
-    static void mostrarContas(ArrayList<Conta> conta) {
-        System.out.println("Contas disponíveis:");
-        for (int i = 0; i < conta.size(); i++) {
-            System.out.print((i + 1) + ". " + conta.get(i).getNumero() + " - " + conta.get(i).getNomeTitular() + " - ");
-            conta.get(i).imprimirTipoconts();
-        }
-    }
-*/
     public static void main(String[] args) {
         double limiteEspecial ; // Limite para contas especiais
         Conta c = null;
