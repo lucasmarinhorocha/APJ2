@@ -1,3 +1,5 @@
+package Interfaces;
+
 
 
 public class Triatleta extends Pessoa implements Nadador, Corredor, Ciclista {
