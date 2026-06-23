@@ -71,6 +71,10 @@ public String getNomeTitular() {
         }
     }
 
+    public boolean vericar(int numeroConta) {
+        return this.numero == numeroConta;
+    }
+
    
 }
 

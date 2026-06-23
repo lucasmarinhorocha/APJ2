@@ -1,6 +1,6 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class Principal {
     static ArrayList<Conta> contas = new ArrayList<>();
@@ -21,23 +21,36 @@ public class Principal {
     }
 
     public static void main(String[] args) {
-        double limiteEspecial ; // Limite para contas especiais
+        double limiteEspecial; // Limite para contas especiais
         Conta c = null;
         Scanner scan = new Scanner(System.in);
         boolean condition = true;
         int opcao;
         int numeroConta = 0;
+        
+        // PROTEÇÃO 1: Iniciamos com -1 para identificar claramente se alguma conta já foi ativada.
+        // Se deixássemos 0, o sistema assumiria a primeira conta mesmo se o usuário quisesse selecionar outra futuramente.
+        int conta_atual = -1; 
 
         while (condition) {
             System.out.println("\n------SEJA BEM VINDO------\n");
-            System.out.println("DIGITE 1 PARA CRIAR CONTA\nDIGITE 2 PARA VER SALDO\nDIGITE 3 PARA SACAR\nDIGITE 4 PARA DEPOSITAR\nDIGITE QUALQUER OUTRO VALOR PARA SAIR");
+            System.out.println("DIGITE 1 PARA CRIAR CONTA\nDIGITE 2 PARA VER SALDO\nDIGITE 3 PARA SACAR\nDIGITE 4 PARA DEPOSITAR\nDIGITE 5 PARA TROCAR A CONTA EM USO\nDIGITE QUALQUER OUTRO VALOR PARA SAIR");
 
             opcao = scan.nextInt();
             
             // Tratamento caso o usuário escolha operar uma conta sem antes criar uma
-            if ((opcao >= 2 && opcao <= 4) && contas.isEmpty()) {
+            // PROTEÇÃO 2: Ampliado o escopo para a opção 5 (evita tentar escolher conta com a lista vazia)
+            if ((opcao >= 2 && opcao <= 5) && contas.isEmpty()) {
                 System.out.println("Nenhuma conta cadastrada ainda. Crie uma conta primeiro!");
                 continue;
+            }
+
+            // PROTEÇÃO 3: Se o usuário quer consultar ou realizar operações (opções 2, 3 ou 4)
+            // mas ainda não escolheu nenhuma conta ativa (conta_atual == -1), o sistema
+            // força a chamada de 'getConta' de forma automática para evitar um IndexOutOfBoundsException.
+            if ((opcao >= 2 && opcao <= 4) && conta_atual == -1) {
+                System.out.println("Nenhuma conta foi selecionada para esta operação ainda.");
+                conta_atual = getConta(scan, contas);
             }
 
             switch (opcao) {
@@ -49,12 +62,10 @@ public class Principal {
                             c = new Cliente(null, 0, 0.0);
                             break;
                         case 2:
-                            c = new Conta_popanca(null, 0, 0); // Ajuste conforme o nome exato da sua classe (ex: ContaPoupanca)
-                           
+                            c = new Conta_popanca(null, 0, 0); 
                             break;
                         case 3:
-                             // Ajuste conforme o nome exato da sua classe
-                             System.out.println("informe o limite para a conta especial:");
+                            System.out.println("informe o limite para a conta especial:");
                             limiteEspecial = scan.nextDouble();
                             c = new Conta_especial(null, 0, 0, limiteEspecial);
                             break;
@@ -70,36 +81,46 @@ public class Principal {
 
                     c.setNumero(++numeroConta);
                     contas.add(c);
+                    
+                    // PROTEÇÃO 4: Define a última conta criada como a conta ativa atual automaticamente.
+                    // Isso poupa o usuário de ter que digitar a opção 5 logo após criar a primeira conta.
+                    conta_atual = contas.size() - 1;
+
                     System.out.println("Número da conta: " + c.getNumero());
-                    System.out.println("Conta criada com sucesso!");
+                    System.out.println("Conta criada com sucesso e definida como ativa!");
                     break;
 
                 case 2:
-                    int conta_atual = getConta(scan, contas);
+                    // Exibe a conta que está sofrendo a ação no momento
+                    System.out.println("Operando a conta número: " + contas.get(conta_atual).getNumero());
                     System.out.println("Saldo da conta: " + contas.get(conta_atual).getSaldo());
                     break;
 
                 case 4:
-                    System.out.println("Informe qual conta você quer utilizar para depositar:");
-                    int conta_atualDEP = getConta(scan, contas);
-                    System.out.println("Informe quanto você quer depositar. Seu saldo atual é: " + contas.get(conta_atualDEP).getSaldo());
+                    System.out.println("Operando a conta número: " + contas.get(conta_atual).getNumero());
+                    System.out.println("Informe quanto você quer depositar. Seu saldo atual é: " + contas.get(conta_atual).getSaldo());
                     double deposito = scan.nextDouble();
 
-                    contas.get(conta_atualDEP).depositar(deposito);
-                    System.out.println("Depósito realizado! Seu saldo atual é: " + contas.get(conta_atualDEP).getSaldo());
+                    contas.get(conta_atual).depositar(deposito);
+                    System.out.println("Depósito realizado! Seu saldo atual é: " + contas.get(conta_atual).getSaldo());
                     break;
 
                 case 3:
-                    System.out.println("Informe qual conta você quer utilizar para sacar:");
-                    int conta_atualSAC = getConta(scan, contas);
-                    System.out.println("Informe quanto você quer sacar. Seu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
+                    System.out.println("Operando a conta número: " + contas.get(conta_atual).getNumero());
+                    System.out.println("Informe quanto você quer sacar. Seu saldo atual é: " + contas.get(conta_atual).getSaldo());
                     double saque = scan.nextDouble();
 
-                    if (contas.get(conta_atualSAC).sacar(saque)) {
-                        System.out.println("Saque efetuado com sucesso! Seu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
+                    if (contas.get(conta_atual).sacar(saque)) {
+                        System.out.println("Saque efetuado com sucesso! Seu saldo atual é: " + contas.get(conta_atual).getSaldo());
                     } else {
-                        System.out.println("Saque não efetuado (Saldo/Limite insuficiente). Seu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
+                        System.out.println("Saque não efetuado (Saldo/Limite insuficiente). Seu saldo atual é: " + contas.get(conta_atual).getSaldo());
                     }
+                    break;
+                
+                case 5:
+                    // Caso o usuário queira alternar explicitamente entre as contas salvas
+                    conta_atual = getConta(scan, contas);
+                    System.out.println("Conta alterada com sucesso!");
                     break;
 
                 default:
@@ -114,11 +135,3 @@ public class Principal {
         mostrarContas(contas);
     }
 }
-
-
-
-
-
-
-
-
