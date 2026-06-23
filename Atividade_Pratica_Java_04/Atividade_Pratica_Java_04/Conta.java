@@ -1,37 +1,38 @@
-//package Atividade_Pratica_Java_03;
+package Atividade_Pratica_Java_04;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Conta {
+    public String nome_titular;
+    public Double saldo  ;
+    public int numero;
 
-    private String nomeTitular;
-    private double saldo;
-    private int numero;
 
-    // Construtor 
-    public Conta(String nomeTitular, int numero, double saldoInicial) {
-        this.nomeTitular = nomeTitular;
+    public Conta(String nome_titular,  Double saldo, int numero) {
+        this.nome_titular = nome_titular;
+        this.saldo = saldo;
         this.numero = numero;
-        this.saldo = saldoInicial;
     }
 
-    // Métodos de acesso (getters e setters)
-
-    public void imprimirTipoconts(){
-        System.out.println("Conta comum");
+    void depositar(double saldo){
+        this.saldo += saldo;
     }
-    /* 
-     public void imprimirTipoconts(char tipo){
-        System.out.println("Conta comum"+ tipo);
-    }*/
 
-    public String getNomeTitular() {
-        return nomeTitular;
+    boolean sacar(double saque) {
+        if (saque <= this.saldo) {
+            this.saldo -= saque;
+            return true;
+        }
+        return false;
+    }
+
+public String getNomeTitular() {
+        return nome_titular;
     }
 
     public void setNomeTitular(String nomeTitular) {
-        this.nomeTitular = nomeTitular;
+        this.nome_titular = nomeTitular;
     }
 
     public double getSaldo() {
@@ -50,26 +51,16 @@ public class Conta {
         this.numero = numero;
     }
 
-    // Métodos de operação
-    public void depositar(double valor) {
-        if (valor > 0) {
-            saldo += valor;
-        }
-    }
-
-    public boolean sacar(double valor) {
-        if (valor > 0 && valor <= saldo) {
-            saldo -= valor;
-            return true;
-        }
-        return false;
-    }
+    
 
     public int getConta(Scanner sc, ArrayList<Conta> conta) {
         System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
         mostrarContas(conta);
         int valor = sc.nextInt();
         return valor - 1;
+    }
+       public void imprimirTipoconts(){
+        System.out.println("Conta comum");
     }
 
     public void mostrarContas(ArrayList<Conta> conta) {
@@ -83,6 +74,12 @@ public class Conta {
    
 }
 
+
+
+
+       
+
+    
 
 
 

@@ -1,9 +1,25 @@
+package Atividade_Pratica_Java_04;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Principal {
     static ArrayList<Conta> contas = new ArrayList<>();
+
+    static int getConta(Scanner sc, ArrayList<Conta> conta) {
+        System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
+        mostrarContas(conta);
+        int valor = sc.nextInt();
+        return valor - 1;
+    }
+
+    static void mostrarContas(ArrayList<Conta> conta) {
+        System.out.println("Contas disponíveis:");
+        for (int i = 0; i < conta.size(); i++) {
+            System.out.print((i + 1) + ". " + conta.get(i).getNumero() + " - " + conta.get(i).getNomeTitular() + " - ");
+            conta.get(i).imprimirTipoconts();
+        }
+    }
 
     public static void main(String[] args) {
         double limiteEspecial ; // Limite para contas especiais
@@ -31,7 +47,7 @@ public class Principal {
                     int tipoConta = scan.nextInt();
                     switch (tipoConta) {
                         case 1:
-                            c = new Conta(null, 0, 0);
+                            c = new Conta(null, 0.0, 0);
                             break;
                         case 2:
                             c = new Conta_popanca(null, 0, 0); // Ajuste conforme o nome exato da sua classe (ex: ContaPoupanca)
@@ -45,7 +61,7 @@ public class Principal {
                             break;
                         default:
                             System.out.println("Tipo inválido! Criando conta padrão comum.");
-                            c = new Conta(null, 0, 0);
+                            c = new Conta(null, 0.0, 0);
                             break;
                     }
                     
@@ -60,13 +76,13 @@ public class Principal {
                     break;
 
                 case 2:
-                    int conta_atual = c.getConta(scan, contas);
+                    int conta_atual = getConta(scan, contas);
                     System.out.println("Saldo da conta: " + contas.get(conta_atual).getSaldo());
                     break;
 
                 case 4:
                     System.out.println("Informe qual conta você quer utilizar para depositar:");
-                    int conta_atualDEP = c.getConta(scan, contas);
+                    int conta_atualDEP = getConta(scan, contas);
                     System.out.println("Informe quanto você quer depositar. Seu saldo atual é: " + contas.get(conta_atualDEP).getSaldo());
                     double deposito = scan.nextDouble();
 
@@ -76,7 +92,7 @@ public class Principal {
 
                 case 3:
                     System.out.println("Informe qual conta você quer utilizar para sacar:");
-                    int conta_atualSAC = c.getConta(scan, contas);
+                    int conta_atualSAC = getConta(scan, contas);
                     System.out.println("Informe quanto você quer sacar. Seu saldo atual é: " + contas.get(conta_atualSAC).getSaldo());
                     double saque = scan.nextDouble();
 
@@ -96,6 +112,14 @@ public class Principal {
         
         scan.close();
         System.out.println("\n--- Resumo de Contas ao Finalizar ---");
-        c.mostrarContas(contas);
+        mostrarContas(contas);
     }
 }
+
+
+
+
+
+
+
+

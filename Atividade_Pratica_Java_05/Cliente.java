@@ -1,9 +1,8 @@
+
 public class Cliente extends Conta{
     
-    String nome_titular;
-    double saldo;
-    int numero;
-     public Cliente(String nome_titular, Double saldo, int numero) {
+ 
+     public Cliente(String nome_titular,int numero, Double saldo) {
         super(nome_titular, saldo, numero);
      }
 

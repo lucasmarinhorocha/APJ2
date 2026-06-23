@@ -1,4 +1,4 @@
-
+package Atividade_Pratica_Java_03;
 
 public class Conta_especial extends Conta{
      public Conta_especial(String nomeTitular, int numero, double saldoInicial, double limite) {
@@ -11,6 +11,14 @@ public class Conta_especial extends Conta{
 private double limite ;
 
 
+public double getLimit(){
+    return limite;
+}
+
+public void setLimit(double limite){
+    this.limite = limite;
+
+}
 
 public boolean sacar(double valor) {
     if (valor <=  this.limite + this.getSaldo()) {

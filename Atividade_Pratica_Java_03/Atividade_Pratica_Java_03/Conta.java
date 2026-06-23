@@ -1,30 +1,39 @@
+package Atividade_Pratica_Java_03;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Conta {
+
+public  class Conta {
+
+    private String nomeTitular;
+    private double saldo;
+    private int numero;
     public String nome_titular;
-    public Double saldo  ;
-    public int numero;
 
-
-    public Conta(String nome_titular,  Double saldo, int numero) {
-        this.nome_titular = nome_titular;
-        this.saldo = saldo;
+    // Construtor 
+    public Conta(String nomeTitular, int numero, double saldoInicial) {
+        this.nomeTitular = nomeTitular;
         this.numero = numero;
+        this.saldo = saldoInicial;
     }
 
-    void depositar(double saldo){
-        this.saldo += saldo;
+    // Métodos de acesso (getters e setters)
+
+    public void imprimirTipoconts(){
+        System.out.println("Conta comum");
     }
+    /* 
+     public void imprimirTipoconts(char tipo){
+        System.out.println("Conta comum"+ tipo);
+    }*/
 
-    abstract boolean sacar(double saque);
-
-public String getNomeTitular() {
-        return nome_titular;
+    public String getNomeTitular() {
+        return nomeTitular;
     }
 
     public void setNomeTitular(String nomeTitular) {
-        this.nome_titular = nomeTitular;
+        this.nomeTitular = nomeTitular;
     }
 
     public double getSaldo() {
@@ -43,16 +52,26 @@ public String getNomeTitular() {
         this.numero = numero;
     }
 
-    
+    // Métodos de operação
+    public void depositar(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+        }
+    }
+
+    public boolean sacar(double valor) {
+        if (valor > 0 && valor <= saldo) {
+            saldo -= valor;
+            return true;
+        }
+        return false;
+    }
 
     public int getConta(Scanner sc, ArrayList<Conta> conta) {
         System.out.println("Informe qual conta você quer utilizar de 1 a " + conta.size());
         mostrarContas(conta);
         int valor = sc.nextInt();
         return valor - 1;
-    }
-       public void imprimirTipoconts(){
-        System.out.println("Conta comum");
     }
 
     public void mostrarContas(ArrayList<Conta> conta) {
@@ -66,12 +85,6 @@ public String getNomeTitular() {
    
 }
 
-
-
-
-       
-
-    
 
 
 
