@@ -5,7 +5,7 @@ public class Principal {
         
         try (java.util.Scanner scanner = new java.util.Scanner(System.in)) {
             while (true) {
-                System.out.println("Escolha a forma: 1 - Retangulo, 2 - Circulo, 3 - Sair");
+                System.out.println("Escolha a forma:\n 1 - Retangulo,\n 2 - Circulo,\n 3 - Sair");
                 int escolha = scanner.nextInt();
                 switch (escolha) {
                     case 1:

@@ -1,13 +1,15 @@
-//package Atividade_Pratica_Java_03;
+package Atividade_Pratica_Java_03;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Conta {
+
+public  class Conta {
 
     private String nomeTitular;
     private double saldo;
     private int numero;
+    public String nome_titular;
 
     // Construtor 
     public Conta(String nomeTitular, int numero, double saldoInicial) {
