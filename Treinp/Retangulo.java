@@ -6,6 +6,7 @@ public class Retangulo extends Forma {
         private double altura;
     
         public Retangulo(double largura, double altura) {
+            super("Retangulo");
             this.largura = largura;
             this.altura = altura;
         }

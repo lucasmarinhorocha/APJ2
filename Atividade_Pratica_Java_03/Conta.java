@@ -21,10 +21,10 @@ public class Conta {
     public void imprimirTipoconts(){
         System.out.println("Conta comum");
     }
-    /* 
+    
      public void imprimirTipoconts(char tipo){
         System.out.println("Conta comum"+ tipo);
-    }*/
+    }
 
     public String getNomeTitular() {
         return nomeTitular;

@@ -21,14 +21,13 @@ public class Principal {
 
                         break;
                     case 2:
-                        
                         System.out.println("Digite o raio do circulo:");
                         double raio = scanner.nextDouble();
                         Forma circulo = new Circulo(raio);
                         circulo.exibirInformacoes();
                         System.out.println("Area do circulo: " + circulo.area());
                         System.out.println("Perimetro do circulo: " + circulo.perimetro());
-                        System.out.println("Diagonal do circulo: " + circulo.diagonal());
+                        
                         break;
                     case 3:
                         System.out.println("Saindo...");
