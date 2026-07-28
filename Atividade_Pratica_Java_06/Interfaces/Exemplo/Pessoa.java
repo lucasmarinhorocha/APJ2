@@ -5,7 +5,7 @@ public class Pessoa {
     private String nome,endereco;
 
 //Construtor
-    public Pessoa(String nome){
+    public Pessoa(String nome) {
          this.setNome(nome);
     }
     //Metodos 

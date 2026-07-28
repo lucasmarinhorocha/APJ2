@@ -4,6 +4,7 @@ public class Circulo extends Forma {
     private double raio;
 
     public Circulo(double raio) {
+        super("Circulo");
         this.raio = raio;
     }
 
