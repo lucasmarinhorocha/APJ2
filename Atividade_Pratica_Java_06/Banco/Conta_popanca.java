@@ -19,6 +19,7 @@ public void reajuste( double percentual){
 public void imprimirTipoconts(){
         System.out.println("Conta poupança");
     }
+
 public boolean sacar(double valor) {
         if (valor > 0 && valor <= this.getSaldo()) {
             this.setSaldo(this.getSaldo() - valor);
@@ -26,6 +27,5 @@ public boolean sacar(double valor) {
         }
         return false;
     }
-
 
 }

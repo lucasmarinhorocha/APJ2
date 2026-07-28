@@ -17,7 +17,7 @@ public class aula {
         System.out.println("Não votante");
 
 
-        } else if((idade >= 16 && idade <=17) || idade > 65 ){
+        } else if((idade >= 16 && idade <= 17) || idade > 65 ){
         
         System.out.println("Voto facultativo");
 
